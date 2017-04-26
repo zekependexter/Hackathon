@@ -21,6 +21,9 @@ if __name__ == '__main__':
 			print("Button Depressed")
 			room.SetOccupiedState()
 
+			roomstate = room.GetState
+			print("Room state is: {0}".format(roomstate))
+
 		if(pi.PhotoStatus() == 1):
 			print("Photo Triggered")
 			while(pi.PhotoStatus() == 1):
