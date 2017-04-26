@@ -4,11 +4,7 @@ import time
 
 if __name__ == '__main__':
 
-
-		
-	print("running")
 	pi = PiControl()
-
 	room = MeetingRoom()
 	
 	print("Initializing GPIO pins...")	
@@ -23,9 +19,13 @@ if __name__ == '__main__':
 			while(pi.ButtonStatus() == 0):
 				time.sleep(.1)	
 			print("Button Depressed")
+			room.SetOccupiedState()
 
 		if(pi.PhotoStatus() == 1):
 			print("Photo Triggered")
 			while(pi.PhotoStatus() == 1):
 				time.sleep(.1)	
 			print("Photo Un-Triggered")
+			room.SetOccupiedState()
+
+		
