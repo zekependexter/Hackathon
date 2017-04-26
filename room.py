@@ -1,5 +1,5 @@
 from gpio import PiControl
-
+import time
 class MeetingRoom:
 
 	Name = "Shift"
@@ -24,14 +24,14 @@ class MeetingRoom:
 			print("Meeting room \"{0}\" is now empty".format(self.Name))
 
 	def GetState(self):
-		if(pi.ButtonStatus() == 0):
-                        while(pi.ButtonStatus() == 0):
+		if(self.pi.ButtonStatus() == 0):
+                        while(self.pi.ButtonStatus() == 0):
                                 time.sleep(.1)
                         print("Button Pressed")
                         self.SetOccupiedState()
                 
-		if(pi.PhotoStatus() == 1):
-                        while(pi.PhotoStatus() == 1):
+		if(self.pi.PhotoStatus() == 1):
+                        while(self.pi.PhotoStatus() == 1):
                                 time.sleep(.1)
                         print("Photo Triggered")
                         self.SetOccupiedState()
