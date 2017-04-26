@@ -60,8 +60,11 @@ def RoomThread(update_interval, e):
 		if not e.isSet():
 			roomInfo = myRoom.GetState()
 			client.write_register(0, roomInfo["IsOccupied"])
-			if roomInfo['IsBooked']:
-				time.sleep(10)
+			client.write_register(1, roomInfo["IsBooked"])
+			client.write_register(2, roomInfo["BookerName"])
+			client.write_register(12, roomInfo["PersonInRoom"])
+			client.write_register(22, roomInfo["WebExInfo"])
+			client.write_register(32, roomInfo["WebExPhone"])
 			
 			print 'Is Booked: ' + str(roomInfo['IsOccupied'])
 		else:
