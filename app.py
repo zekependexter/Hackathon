@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
 			roomstate = room.GetState()
 			print("Room state is: {0}".format(roomstate))
-
+			
 		if(pi.PhotoStatus() == 1):
 			while(pi.PhotoStatus() == 1):
 				time.sleep(.1)	

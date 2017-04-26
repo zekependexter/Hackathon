@@ -1,4 +1,4 @@
-
+from gpio import PiControl
 
 class MeetingRoom:
 
@@ -10,6 +10,10 @@ class MeetingRoom:
 	WebExInfo = ""
 	WebExPhone = "12072400694"
 
+	pi = PiControl()
+	pi.InitButton()
+	pi.InitPhoto()
+
 
 	def SetOccupiedState(self):
 		if(self.IsOccupied == 0):
@@ -20,6 +24,19 @@ class MeetingRoom:
 			print("Meeting room \"{0}\" is now empty".format(self.Name))
 
 	def GetState(self):
+		if(pi.ButtonStatus() == 0):
+                        while(pi.ButtonStatus() == 0):
+                                time.sleep(.1)
+                        print("Button Pressed")
+                        self.SetOccupiedState()
+                
+		if(pi.PhotoStatus() == 1):
+                        while(pi.PhotoStatus() == 1):
+                                time.sleep(.1)
+                        print("Photo Triggered")
+                        self.SetOccupiedState()
+	
+
 		info = {}
 		info["Name"] = self.Name
 		info["IsOccupied"] = self.IsOccupied
